@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Alert, Pressable, StyleSheet, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { QUOTES } from '../../constants/quotes'
+import { shareQuote } from '../../hooks/shareQuote'
 import { getBookmarkIds, toggleBookmark } from '../../hooks/storage'
 
 export default function QuoteDetail() {
@@ -53,6 +54,9 @@ export default function QuoteDetail() {
           {bookmarked ? 'Bookmarked ✓' : 'Bookmark'}
         </Text>
       </Pressable>
+      <Pressable onPress={() => shareQuote(quote)} style={styles.btnSecondary}>
+        <Text style={styles.btnSecondaryText}>Share</Text>
+      </Pressable>
     </SafeAreaView>
   )
 }
@@ -72,4 +76,12 @@ const styles = StyleSheet.create({
   btnActive: { backgroundColor: '#111' },
   btnText: { fontWeight: '900' },
   btnTextActive: { color: 'white' },
+  btnSecondary: {
+    marginTop: 12,
+    paddingVertical: 12,
+    borderRadius: 12,
+    backgroundColor: '#eee',
+    alignItems: 'center',
+  },
+  btnSecondaryText: { fontWeight: '900' },
 })

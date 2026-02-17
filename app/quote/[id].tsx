@@ -109,32 +109,64 @@ export default function QuoteDetail() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 16, flex: 1 },
-  quote: { fontSize: 20, lineHeight: 28, fontWeight: "800" },
-  meta: { marginTop: 12, fontWeight: "700", opacity: 0.85 },
-  sub: { marginTop: 8, opacity: 0.7 },
-
+  container: {
+    padding: 16,
+    flex: 1,
+    backgroundColor: "#F5F1E8",
+  },
+  quote: {
+    fontSize: 20,
+    lineHeight: 28,
+    fontWeight: "800",
+    color: "#2E2A26",
+  },
+  meta: {
+    marginTop: 12,
+    fontWeight: "700",
+    color: "#6B6259",
+  },
+  sub: {
+    marginTop: 8,
+    color: "#6B6259",
+    opacity: 0.95,
+  },
   actions: { marginTop: 18, gap: 12 },
   actionRow: { marginTop: 18, flexDirection: "row", gap: 12 },
 
   btn: {
     paddingVertical: 12,
-    borderRadius: 12,
-    backgroundColor: "#eee",
+    borderRadius: 14,
+    backgroundColor: "#EFE7DA",
+    borderWidth: 1,
+    borderColor: "#E7DFD2",
     alignItems: "center",
   },
-  btnActive: { backgroundColor: "#111" },
-  btnText: { fontWeight: "900" },
-  btnTextActive: { color: "white" },
+
+  btnActive: {
+    backgroundColor: "#2E2A26",
+    borderColor: "#2E2A26",
+  },
+
+  btnText: {
+    fontWeight: "900",
+    color: "#2E2A26",
+  },
+
+  btnTextActive: { color: "#FFFFFF" },
 
   btnSecondary: {
     paddingVertical: 12,
-    borderRadius: 12,
-    backgroundColor: "#eee",
+    borderRadius: 14,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#E7DFD2",
     alignItems: "center",
   },
-  btnSecondaryText: { fontWeight: "900" },
-  btnHalf: {
-    flex: 1,
+
+  btnSecondaryText: {
+    fontWeight: "900",
+    color: "#2E2A26",
   },
+
+  btnHalf: { flex: 1 },
 });

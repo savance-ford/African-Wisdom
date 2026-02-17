@@ -83,24 +83,65 @@ export default function Browse() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 16, flex: 1 },
-  title: { fontSize: 22, fontWeight: "800", marginBottom: 12 },
-  chips: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 12 },
-  chip: {
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    borderRadius: 999,
-    backgroundColor: "#eee",
+  container: {
+    padding: 16,
+    flex: 1,
+    backgroundColor: "#F5F1E8",
   },
-  chipActive: { backgroundColor: "#111" },
-  chipText: { fontWeight: "700" },
-  chipTextActive: { color: "white" },
-  card: {
-    padding: 14,
-    borderRadius: 12,
-    backgroundColor: "white",
+  title: {
+    fontSize: 22,
+    fontWeight: "800",
+    marginBottom: 12,
+    color: "#2E2A26",
+  },
+
+  chips: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
     marginBottom: 12,
   },
-  quote: { fontSize: 16, lineHeight: 22 },
-  meta: { marginTop: 10, fontWeight: "700", opacity: 0.8 },
+
+  chip: {
+    paddingVertical: 7,
+    paddingHorizontal: 12,
+    borderRadius: 999,
+    backgroundColor: "#EFE7DA",
+    borderWidth: 1,
+    borderColor: "#E7DFD2",
+  },
+  chipActive: {
+    backgroundColor: "#2E2A26",
+    borderColor: "#2E2A26",
+  },
+
+  chipText: {
+    fontWeight: "700",
+    color: "#2E2A26",
+  },
+
+  chipTextActive: {
+    color: "#FFFFFF",
+  },
+
+  card: {
+    padding: 14,
+    borderRadius: 14,
+    backgroundColor: "#FFFFFF",
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#E7DFD2",
+  },
+
+  quote: {
+    fontSize: 16,
+    lineHeight: 22,
+    color: "#2E2A26",
+  },
+
+  meta: {
+    marginTop: 10,
+    fontWeight: "700",
+    color: "#6B6259",
+  },
 });

@@ -1,27 +1,34 @@
-import React, { useMemo, useState } from 'react'
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import React, { useMemo, useState } from "react";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
-import { router } from 'expo-router'
-import { QUOTES } from '../../constants/quotes'
-import type { AfricaRegion } from '../../constants/quoteTypes'
+import { QUOTES } from "../../constants/quotes";
+import type { AfricaRegion } from "../../constants/quoteTypes";
 
-const REGIONS: (AfricaRegion | 'All')[] = [
-  'All',
-  'North',
-  'West',
-  'East',
-  'Central',
-  'South',
-]
+const REGIONS: (AfricaRegion | "All")[] = [
+  "All",
+  "North",
+  "West",
+  "East",
+  "Central",
+  "South",
+];
 
 export default function Browse() {
-  const [region, setRegion] = useState<AfricaRegion | 'All'>('All')
+  const [region, setRegion] = useState<AfricaRegion | "All">("All");
+
+  const counts = useMemo(() => {
+    const map: Record<string, number> = { All: QUOTES.length };
+    for (const r of REGIONS) if (r !== "All") map[r] = 0;
+    for (const q of QUOTES) map[q.region] = (map[q.region] ?? 0) + 1;
+    return map;
+  }, []);
 
   const filtered = useMemo(() => {
-    if (region === 'All') return QUOTES
-    return QUOTES.filter((q) => q.region === region)
-  }, [region])
+    if (region === "All") return QUOTES;
+    return QUOTES.filter((q) => q.region === region);
+  }, [region, QUOTES]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,7 +36,7 @@ export default function Browse() {
 
       <View style={styles.chips}>
         {REGIONS.map((r) => {
-          const active = r === region
+          const active = r === region;
           return (
             <Pressable
               key={r}
@@ -37,20 +44,32 @@ export default function Browse() {
               style={[styles.chip, active && styles.chipActive]}
             >
               <Text style={[styles.chipText, active && styles.chipTextActive]}>
-                {r}
+                {r} ({counts[r] ?? 0})
               </Text>
             </Pressable>
-          )
+          );
         })}
       </View>
 
       <FlatList
         data={filtered}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={{ paddingBottom: 24 }}
+        removeClippedSubviews
+        initialNumToRender={10}
+        windowSize={7}
+        ListEmptyComponent={
+          <Text style={{ opacity: 0.6, paddingTop: 10 }}>No quotes found.</Text>
+        }
         renderItem={({ item }) => (
           <Pressable
-            style={styles.card}
-            onPress={() => router.push(`/quote/${item.id}`)}
+            style={({ pressed }) => [
+              styles.card,
+              pressed && { opacity: 0.85, transform: [{ scale: 0.99 }] },
+            ]}
+            onPress={() =>
+              router.push({ pathname: "/quote/[id]", params: { id: item.id } })
+            }
           >
             <Text style={styles.quote}>"{item.text}"</Text>
             <Text style={styles.meta}>
@@ -60,28 +79,28 @@ export default function Browse() {
         )}
       />
     </SafeAreaView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: { padding: 16, flex: 1 },
-  title: { fontSize: 22, fontWeight: '800', marginBottom: 12 },
-  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 12 },
+  title: { fontSize: 22, fontWeight: "800", marginBottom: 12 },
+  chips: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 12 },
   chip: {
     paddingVertical: 6,
     paddingHorizontal: 10,
     borderRadius: 999,
-    backgroundColor: '#eee',
+    backgroundColor: "#eee",
   },
-  chipActive: { backgroundColor: '#111' },
-  chipText: { fontWeight: '700' },
-  chipTextActive: { color: 'white' },
+  chipActive: { backgroundColor: "#111" },
+  chipText: { fontWeight: "700" },
+  chipTextActive: { color: "white" },
   card: {
     padding: 14,
     borderRadius: 12,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     marginBottom: 12,
   },
   quote: { fontSize: 16, lineHeight: 22 },
-  meta: { marginTop: 10, fontWeight: '700', opacity: 0.8 },
-})
+  meta: { marginTop: 10, fontWeight: "700", opacity: 0.8 },
+});

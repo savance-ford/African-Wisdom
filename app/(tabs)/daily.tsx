@@ -18,7 +18,7 @@ export default function Daily() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Daily Wisdom</Text>
+      <Text style={styles.title}>Daily Inspiration</Text>
 
       {!quote ? (
         <ActivityIndicator />

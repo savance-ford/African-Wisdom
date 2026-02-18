@@ -23,7 +23,7 @@ export default function Bookmarks() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Bookmarks</Text>
+      <Text style={styles.title}>Save the Proverbs That Inspire You</Text>
 
       {bookmarkedQuotes.length === 0 ? (
         <Text style={styles.empty}>

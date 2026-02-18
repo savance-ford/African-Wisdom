@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     padding: 16,
     flex: 1,
     backgroundColor: "#F5F1E8",
+    justifyContent: "center",
   },
   quote: {
     fontSize: 20,

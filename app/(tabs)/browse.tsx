@@ -32,7 +32,7 @@ export default function Browse() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Browse</Text>
+      <Text style={styles.title}>Explore Wisdom Across 5 Regions</Text>
 
       <View style={styles.chips}>
         {REGIONS.map((r) => {
